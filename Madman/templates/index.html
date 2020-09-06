@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
-{% block homeactive %}active{% endblock homeactive %}
+{% comment %} {% block homeactive %}active{% endblock homeactive %} {% endcomment %}
+
+<h1>Welcome to Madman's Blog</h1>
+
+{% for blog in blogs %}
+
+{{blog.title}}
+<br>
+{% endfor %}
+
+
+
 {% endblock body %}
