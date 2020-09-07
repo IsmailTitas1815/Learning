@@ -18,9 +18,9 @@ def contact(request):
 
 def search(request):
     return render(request, 'search.html')
-# def talkingPicture(request):
-#     return render(request,'index.html')
 
 
-def talkingPicture(request, slug):
-    return HttpResponse(f"this is talkingPicture {slug}")
+def blogposts(request, slug):
+    blog = Blog.objects.filter(slug=slug).first()
+    context = {"blog": blog}
+    return render(request,'blogposts.html',context)

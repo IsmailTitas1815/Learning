@@ -5,7 +5,7 @@
     "[python]": {},
     "files.autoSave": "afterDelay",
     "python.dataScience.sendSelectionToInteractiveWindow": true,
-    // "git.enableSmartCommit": true,
+    "git.enableSmartCommit": true,
     // "python.linting.pylintArgs": [
     //     "--load-plugins=pylint_django",
     //     "--errors-only"
