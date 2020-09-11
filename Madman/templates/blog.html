@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% block blogactive %}active{% endblock blogactive %}
-{% block body %}
 
+{% block css %} 
+<style>
+
+.container{
+min-height: 100vh;
+}
+
+</style>
+{% endblock css %}
+
+{% block body %}
 
 <div class="container">
 
@@ -10,11 +20,33 @@
 
     <div class="my-4">
             <h3 class="mt-0" ><a href="/blogposts/{{blog.slug}}" class="text-dark">{{blog.title}}</a></h3>
-                <div class="my-2">{{blog.content|slice:150}}...</div>
-        <a href="/blogposts/{{blog.slug}}" class="text-dark"><button class="btn btn-primary">Read more</button></a>
+                <div class="my-2">{{blog.short_desc|slice:200}}...</div>
+        <a href="/blogposts/{{blog.slug}}" class="text-dark"><button class="btn btn-outline-primary btn-sm">Read more</button></a>
     </div>
 {% endfor %}
 
+<div class="my-3">
+
+{% if prev %}
+
+    <a href="/blog?page={{prev}}"><button class="btn btn-success ">&laquo;Previous</button></a>
+
+{% else %}
+
+    <a href="#"><button class="btn btn-success ">&laquo;Previous</button></a>
+{% endif %}
+
+{% if nxt %}
+
+    <a href="/blog?page={{nxt}}"><button class="btn btn-success float-right">Next&raquo;</button></a>
+
+{% else %}
+
+    <a href="#"><button class="btn btn-success float-right">Next&raquo;</button></a>
+
+{% endif %}
+
+</div>
 </div>
 
 {% endblock body %}

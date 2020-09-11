@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block blogactive %}active{% endblock blogactive %}
+
+{% block css %}
+<style>
+    .container {
+        min-height: 100vh;
+    }
+</style>
+{% endblock css %}
+
 {% block body %}
-
-
 <div class="container">
 
 <h2 class="my-3">{{blog.title}}</h2>
