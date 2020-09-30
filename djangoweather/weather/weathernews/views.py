@@ -8,7 +8,8 @@ def home(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=d329748d0717cb9758b388d98a841492'
     
     if request.method == "POST":
-        pass
+        form = CityForm(request.POST)
+        form.save()
 
     form = CityForm()
 
