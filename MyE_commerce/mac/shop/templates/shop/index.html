@@ -15,7 +15,7 @@ blackground-color: blue;
 }
 
 .col-md-3 img{
-width: 227px;
+max-width: 227px;
 height: 242px;
 
 }
@@ -103,6 +103,7 @@ padding-right: 0;
 
 <script>
 console.log('working');
+
 if(localStorage.getItem('cart') == null ){
 var cart = {};
 }
@@ -110,6 +111,8 @@ var cart = {};
 else
 {
 cart = JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+
 }
 
 $('.cart').click(function(){
@@ -128,6 +131,8 @@ $('.cart').click(function(){
 
     console.log(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+
 
 });
 
