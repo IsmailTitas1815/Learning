@@ -1,6 +1,17 @@
-// console.time("my code");
-console.log('Hello');
-console.table({titas: 'ok',fine: 98});
-// console.warn("this is warning");
-// console.timeEnd("my code");
-console.assert(777<200,"age more than 200 is not possible")
+console.log('tut3');
+var name = `titas`;
+var channel1;
+channel1 = "topu";
+console.log(name)
+
+{
+//indent
+let name = "ismail";
+console.log(name);
+
+}
+console.log(name)
+
+function name(params) {
+    
+}
