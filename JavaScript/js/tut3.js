@@ -1,32 +1,69 @@
-// console.log('tut3');
-var name = `titas`;
-var channel1;
-channel1 = "topu";
-// console.log(name)
+// let day;
 
+// switch(new Date().getDay())
 // {
-// //indent
-// let name = "ismail";
-// console.log(name);
+//     case 0:
+//         day = "sunday";
+//         break
+//     case 1:
+//         day = "monday";
+//         break
+//     case 2:
+//         day = "tuesday";
+//         break   
+//     case 3:
+//         day = "wednesday";
+//         break
+//     case 4:
+//         day = "thursday";
+//         break
+//     case 5:
+//         day = "friday";
+//         break
+//     case 6:
+//         day = "saturday";
+//         break   
+//     default:
+//         day = "nothing"      
 
 // }
+
+// console.log(day)
+
+// var name = "titas"
+// console.log(name)
+// {
+//     var name = "topu"
+//     console.log(name)
+// }
+
 // console.log(name)
 
-// function name(params) {
-    
+
+// let random = Math.floor(Math.random()*10 )+1
+// console.log(random)
+
+// const ran = (a,b) =>{
+//     return Math.floor(Math.random()*(b-a)+1)+a;
 // }
+// console.log(ran(5,15))
 
-let bool = String(true);
+// const a = 5;
 
-// console.log(typeof(bool))
+// (a==5) 
+// ?console.log("ok")
+// :console.log("not ok") 
 
-let arr = [2,3,4,5,6,6];
-// console.log(arr.length);
-console.log(arr,typeof(arr))
+setTimeout(aa,3000,'hi');
+setTimeout(aaa,3000,'hi');
+setTimeout(aaaa,3000,'hi');
 
-// let i = new Date()
-// console.log(i.toString())
-
-let str = parseFloat('454534.09887')
-console.log(str.toFixed(3))
-
+function aa(x){
+    console.log(x);
+}
+function aaa(x){
+    console.log(x);
+}
+function aaaa(x){
+    console.log(x);
+}
