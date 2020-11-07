@@ -97,5 +97,16 @@
 
 // alert("fuck");
 // a = prompt("what the fuck");
-a = confirm("sure?");
+// a = confirm("sure?");
+// console.log(a)
+
+let a  = document.all; 
+
+Array.from(a).forEach(function(element){
+
+console.log(element)
+
+})
+
 console.log(a)
+  
