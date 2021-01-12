@@ -8,43 +8,44 @@
 
 
 
-// function operations(a,b,callback) {
+function operations(a,b,callback) {
 
-//  let c = a+b;
+ let c = a+b;
 
-//  callback(c);
+ callback(c);
     
-// }
+}
 
-// function plus5(n) {
-//     console.log(n+5);
-// }
-// function minus5(n) {
-//     console.log(n-5);
-// }
-
+function plus5(n) {
+    console.log(n+5);
+}
+function minus5(n) {
+    console.log(n-5);
+}
 // operations(10,5,function (cn) {
 //     console.log(cn);
 // });
 
+operations(10,5,plus5)
 
-let person = [
-{
-    name : 'titas',
-    age  : 22,
-    address : 'ashulia',
-    id : [181,15,1815],
-},
-{
-    name : 'ti',
-    age  : 2,
-    address : 'a',
-    id : [18],
-  }
 
-];
+// let person = [
+// {
+//     name : 'titas',
+//     age  : 22,
+//     address : 'ashulia',
+//     id : [181,15,1815],
+// },
+// {
+//     name : 'ti',
+//     age  : 2,
+//     address : 'a',
+//     id : [18],
+//   }
 
-person.forEach(function(people) {
+// ];
+
+// person.forEach(function(people) {
     
     
-});
+// });
