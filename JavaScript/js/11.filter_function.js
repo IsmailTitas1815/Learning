@@ -6,21 +6,25 @@ var arr = [1,2,3434,23,423,3534,4234,2345,32424,4,242,2,4];
 
 // console.log(new_arr);
 
-function myfilter(arr,callback) {
-    var newArr = [];
+function newF(arr,callback){
+    var newarr = [];
 
-    for (let i = 0; i < arr.length; i++) {
-        if (callback(arr[i]))
-        {
-            newArr.push(arr[i])
+    arr.forEach(element => {
+        if(callback(element)){
+            newarr.push(element);
         }
-    }
+    });
 
-    return newArr;
+    return newarr;
+
 }
 
-var myArr = myfilter(arr,function(ele){
+
+var my = newF(arr,function (ele) {
     return ele%2==0;
 });
 
-console.log(myArr);
+console.log(my);
+
+
+
