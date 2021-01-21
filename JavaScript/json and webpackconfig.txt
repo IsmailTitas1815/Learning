@@ -1,0 +1,57 @@
+{% comment %} json {% endcomment %}
+
+
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^5.16.0",
+    "webpack-cli": "^4.4.0"
+  },
+  "dependencies": {}
+}
+
+
+
+
+
+
+
+{% comment %}  webconfig {% endcomment %}
+
+
+
+const path = require('path');
+module.exports = {
+    entry: { main: './src/index.js' },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js'
+    },
+    module: {
+        rules: [
+            {
+                test: "/\.js$/",
+                exclude: "/node_modules/",
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }
+}
