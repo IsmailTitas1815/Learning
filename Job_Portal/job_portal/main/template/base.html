@@ -30,15 +30,15 @@
 	<![endif]-->
 	
 	<!-- STYLESHEETS -->
-	<link rel="stylesheet" type="text/css" href="css/plugins.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/templete.css">
-	<link class="skin" rel="stylesheet" type="text/css" href="css/skin/skin-1.css">
-	<link rel="stylesheet" href="plugins/datepicker/css/bootstrap-datetimepicker.min.css"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
+	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'css/skin/skin-1.css' %}">
+	<link rel="stylesheet" href="{% static 'plugins/datepicker/css/bootstrap-datetimepicker.min.css' %}"/>
 	<!-- Revolution Slider Css -->
-	<link rel="stylesheet" type="text/css" href="plugins/revolution/revolution/css/layers.css">
-	<link rel="stylesheet" type="text/css" href="plugins/revolution/revolution/css/settings.css">
-	<link rel="stylesheet" type="text/css" href="plugins/revolution/revolution/css/navigation.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/layers.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/settings.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/navigation.css' %}">
 	<!-- Revolution Navigation Style -->
 </head>
 <body id="bg">
@@ -65,7 +65,7 @@
                     <div class="extra-nav">
                         <div class="extra-cell">
                             <a href={% url "register"%} class="site-button"><i class="fa fa-user"></i> Sign Up</a>
-                            <a href="login.html" class="site-button"><i class="fa fa-lock"></i> login</a>
+                            <a href={% url 'login' %} class="site-button"><i class="fa fa-lock"></i> login</a>
                         </div>
                     </div>
                     <!-- Quik search -->
@@ -79,24 +79,24 @@
                     <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
                         <ul class="nav navbar-nav">
 							<li class="active">
-								<a href="#">Home <i class="dez-page"></i></a>
+								<a href={% url 'index' %}>Home <i class="dez-page"></i></a>
 							</li>
 							<li>
-								<a href="browse-job.html" class="dez-page">Browse Job</a>
+								<a href={% url 'browse_job' %} class="dez-page">Browse Job</a>
 							</li>
 							<li>
-								<a href="browse-candidates.html" class="dez-page">Browse Candidates</a>
+								<a href={% url 'browse_candidates' %} class="dez-page">Browse Candidates</a>
 							</li>
 							<li>
 								<a href="#">Pages <i class="fa fa-chevron-down"></i></a>
 								<ul class="sub-menu">
-									<li><a href="about-us.html" class="dez-page">About Us</a></li>
+									<li><a href={% url 'about_us' %} class="dez-page">About Us</a></li>
 									</li>
-									<li><a href="register.html" class="dez-page">Register</a></li>
+									<li><a href={% url 'register' %} class="dez-page">Register</a></li>
 								</ul>
 							</li>
 							<li>
-							<a href="contact.html">Contact Us <i class="dez-page"></i></a>
+							<a href={% url 'contact' %}>Contact Us <i class="dez-page"></i></a>
 							</li>
 							
 						</ul>			
@@ -197,25 +197,25 @@
 </div>
 
 <!-- JAVASCRIPT FILES ========================================= -->
-<script src="js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
-<script src="plugins/wow/wow.js"></script><!-- WOW JS -->
-<script src="plugins/bootstrap/js/popper.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
-<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script><!-- FORM JS -->
-<script src="plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script><!-- FORM JS -->
-<script src="plugins/magnific-popup/magnific-popup.js"></script><!-- MAGNIFIC POPUP JS -->
-<script src="plugins/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
-<script src="plugins/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
-<script src="plugins/imagesloaded/imagesloaded.js"></script><!-- IMAGESLOADED -->
-<script src="plugins/masonry/masonry-3.1.4.js"></script><!-- MASONRY -->
-<script src="plugins/masonry/masonry.filter.js"></script><!-- MASONRY -->
-<script src="plugins/owl-carousel/owl.carousel.js"></script><!-- OWL SLIDER -->
-<script src="plugins/rangeslider/rangeslider.js" ></script><!-- Rangeslider -->
-<script src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script src="js/dz.carousel.js"></script><!-- SORTCODE FUCTIONS  -->
-<script src='js/recaptcha/api.js'></script> <!-- Google API For Recaptcha  -->
-<script src="js/dz.ajax.js"></script><!-- CONTACT JS  -->
-<script src="plugins/paroller/skrollr.min.js"></script><!-- PAROLLER -->
+<script src=" {% static 'js/jquery.min.js' %} "></script><!-- JQUERY.MIN JS -->
+<script src=" {% static 'plugins/wow/wow.js' %} "></script><!-- WOW JS -->
+<script src=" {% static 'plugins/bootstrap/js/popper.min.js' %}"></script><!-- BOOTSTRAP.MIN JS -->
+<script src=" {% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script><!-- BOOTSTRAP.MIN JS -->
+<script src=" {% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script><!-- FORM JS -->
+<script src=" {% static 'plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script><!-- FORM JS -->
+<script src=" {% static 'plugins/magnific-popup/magnific-popup.js' %}"></script><!-- MAGNIFIC POPUP JS -->
+<script src=" {% static 'plugins/counter/waypoints-min.js' %}"></script><!-- WAYPOINTS JS -->
+<script src=" {% static 'plugins/counter/counterup.min.js' %}"></script><!-- COUNTERUP JS -->
+<script src=" {% static 'plugins/imagesloaded/imagesloaded.js' %}"></script><!-- IMAGESLOADED -->
+<script src=" {% static 'plugins/masonry/masonry-3.1.4.js' %}"></script><!-- MASONRY -->
+<script src=" {% static 'plugins/masonry/masonry.filter.js' %}"></script><!-- MASONRY -->
+<script src=" {% static 'plugins/owl-carousel/owl.carousel.js' %}"></script><!-- OWL SLIDER -->
+<script src=" {% static 'plugins/rangeslider/rangeslider.js' %}" ></script><!-- Rangeslider -->
+<script src=" {% static 'js/custom.js' %}"></script><!-- CUSTOM FUCTIONS  -->
+<script src=" {% static 'js/dz.carousel.js' %}"></script><!-- SORTCODE FUCTIONS  -->
+<script src=" {% static 'js/recaptcha/api.js' %}"></script> <!-- Google API For Recaptcha  -->
+<script src=" {% static 'js/dz.ajax.js' %}"></script><!-- CONTACT JS  -->
+<script src=" {% static 'plugins/paroller/skrollr.min.js' %}"></script><!-- PAROLLER -->
 <!-- Go to www.addthis.com/dashboard to customize your tools --> 
 
 </body>
