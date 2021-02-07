@@ -1,24 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block content %}
-    <!-- Content -->
-    <div class="page-content bg-white">
-        <!-- inner page banner -->
-        <div class="dez-bnr-inr overlay-black-middle bg-pt" style="background-image:url( {% static 'images/banner/bnr2.jpg' %} );">
-            <div class="container">
-                <div class="dez-bnr-inr-entry">
-                    <h1 class="text-white">Register</h1>
-					<!-- Breadcrumb row -->
-					<div class="breadcrumb-row">
-						<ul class="list-inline">
-							<li><a href="#">Home</a></li>
-							<li>Register</li>
-						</ul>
-					</div>
-					<!-- Breadcrumb row END -->
-                </div>
-            </div>
-        </div>
+{% load static%}
+{% block content%}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+    {% comment %} <!-- Content -->
+
         <!-- inner page banner END -->
         <!-- contact area -->
         <div class="section-full content-inner shop-account">
@@ -33,27 +18,170 @@
 					<div class="col-md-12 m-b30">
 						<div class="p-a30 border-1  max-w500 m-auto">
 							<div class="tab-content">
-								<form id="login" class="tab-pane active">
+								<form id="login" method="POST" class="tab-pane active">
+								{% csrf_token %}
 									<h4 class="font-weight-700">PERSONAL INFORMATION</h4>
-									<p class="font-weight-600">If you have an account with us, please log in.</p>
-									<div class="form-group">
-										<label class="font-weight-700">First Name *</label>
-										<input name="dzName" required="" class="form-control" placeholder="First Name" type="text">
-									</div>
-									<div class="form-group">
-										<label class="font-weight-700">Last Name *</label>
-										<input name="dzName" required="" class="form-control" placeholder="Last Name" type="text">
-									</div>
-									<div class="form-group">
-										<label class="font-weight-700">E-MAIL *</label>
-										<input name="dzName" required="" class="form-control" placeholder="Your Email Id" type="email">
-									</div>
-									<div class="form-group">
-										<label class="font-weight-700">PASSWORD *</label>
-										<input name="dzName" required="" class="form-control " placeholder="Type Password" type="password">
-									</div>
-									<div class="text-left">
-										<button class="site-button button-lg outline outline-2">CREATE</button>
+									<p class="font-weight-600">If you have an account with us, please log in.</p> {% endcomment %}
+									{% comment %} {{form|crispy}} {% endcomment %}
+
+										<!DOCTYPE html>
+<html>
+    
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #7abecc !important;
+		}
+		.user_card {
+			width: 350px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: #74cfbf;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title{
+			color: #fff;
+		}
+		.login_btn {
+			width: 100%;
+			background: #33ccff !important;
+			color: white !important;
+		}
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+		.input-group-text {
+			background: #f7ba5b !important;
+			color: white !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+
+	</style>
+
+</head>
+<body>
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dez-bnr-inr overlay-black-middle bg-pt" style="background-image:url( {% static 'images/banner/bnr2.jpg' %});">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                    <h1 class="text-white">Register</h1>
+					<!-- Breadcrumb row -->
+					<div class="breadcrumb-row">
+						<ul class="list-inline">
+							<li><a href="#">Home</a></li>
+							<li>Register</li>
+						</ul>
+					</div>
+					<!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+	<div class="container h-100 mt-3 mb-3">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title">REGISTER ACCOUNT</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+
+					<form method="POST" action="">
+					{% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							{{form.username}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.email}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password1}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password2}}
+						</div>
+
+				   		<div class="d-flex justify-content-center mt-3 login_container">
+				 			<input class="btn login_btn" type="submit" value="Register Account">
+				   		</div>
+					</form>
+				</div>
+		
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+		//We start indexing at one because CSRF_token is considered and input field 
+		 */
+
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[2].placeholder='Username..';
+		form_fields[3].placeholder='Email..';
+		form_fields[4].placeholder='Enter password...';
+		form_fields[5].placeholder='Re-enter Password...';
+
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+</body>
+</html>
+
+
+									{% comment %} <div class="text-left">
+										<button class="site-button button-lg outline outline-2"> CREATE </button>
 									</div>
 								</form>
 							</div>
@@ -66,4 +194,5 @@
 		<!-- contact area  END -->
     </div>
     <!-- Content END-->
-   {% endblock %}
+	{% endcomment %}
+{% endblock %} 

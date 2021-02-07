@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<p> Are you sure that you want to delete this "{{item}}" as a title of the post ? </p>
+
+<form action="{% url 'delete_job_post' item.id %}" method="POST"  class="m-3">
+{% csrf_token %}
+
+<a href="{% url 'browse_job' %}" class = "btn btn-warning" >cancel</a>
+<input class = "btn btn-danger" type="submit" name="confirm">
+
+</form>
+
+
+{% endblock content %}
