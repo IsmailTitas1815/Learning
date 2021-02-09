@@ -28,24 +28,32 @@
 //         console.log("we are "+name);
 //     })
 
-fetch('https://jsonplaceholder.typicode.com/users')
-    .then((response) => response.json())
-    .then((body)=>{
+// fetch('https://jsonplaceholder.typicode.com/users')
+//     .then((response) => response.json())
+//     .then((body)=>{
         
-        const lis = body.map(data=>{
-            let li = document.createElement('li');
-            let text = `Name: ${data.name}, Email: ${data.email}`
-            let textNode = document.createTextNode(text);
-            li.appendChild(textNode)
+//         const lis = body.map(data=>{
+//             let li = document.createElement('li');
+//             let text = `Name: ${data.name}, Email: ${data.email}`
+//             let textNode = document.createTextNode(text);
+//             li.appendChild(textNode)
 
-            return li;
-        })
+//             return li;
+//         })
 
-        lis.forEach((li) => {
-             document.getElementById('mylist').appendChild(li)
+//         lis.forEach((li) => {
+//              document.getElementById('mylist').appendChild(li)
 
-        });
+//         });
         
-    })
-    .catch((err) => console.log(err))
+//     })
+//     .catch((err) => console.log(err))
 
+
+let arr = [1,2,3,4,5,6,7];
+
+let a = arr.map(function(bal){
+    return bal*bal;
+});
+
+console.log(a);
