@@ -31,12 +31,51 @@ def home(request):
 
 	return render(request, 'accounts/dashboard.html', context)
 
+# userProfile
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['user_group'])
+def userProfile(request):
+	orders = request.user.customer.order_set.all()
+	total_orders = orders.count()
+	delivered = orders.filter(status='Delivered').count()
+	pending = orders.filter(status='Pending').count()
+	context = {'orders':orders,
+	'total_orders':total_orders,'delivered':delivered,
+	'pending':pending }
+	return render(request,'accounts/user.html',context)
+
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def products(request):
 	products = Product.objects.all()
 
 	return render(request, 'accounts/products.html', {'products':products})
+
+
+#register
+@unauthenticated_user
+def register(request):
+	# if request.user.is_authenticated:
+	# 	return redirect('home')
+	# else:
+	form = RegistrationForm()
+	if request.method == "POST":
+		form = RegistrationForm(request.POST)
+		if form.is_valid():
+				user = form.save()
+				username = form.cleaned_data.get('username')
+				group = Group.objects.get(name='user_group')
+				user.groups.add(group)
+				Customer.objects.create(
+					user=user,
+					)
+				messages.success(request, 'Account was created for ' + user)
+				return redirect('login')
+		
+
+	context = {'form':form}
+	return render(request, 'accounts/register.html', context)
 
 
 # customer
@@ -107,27 +146,6 @@ def deleteOrder(request, pk):
 
 from .forms import RegistrationForm
 
-#register
-@unauthenticated_user
-def register(request):
-	# if request.user.is_authenticated:
-	# 	return redirect('home')
-	# else:
-	form = RegistrationForm()
-	if request.method == "POST":
-		form = RegistrationForm(request.POST)
-		if form.is_valid():
-				user = form.save()
-				username = form.cleaned_data.get('username')
-				group = Group.objects.get(name='user_group')
-				user.groups.add(group)
-				messages.success(request, 'Account was created for ' + user)
-
-				return redirect('login')
-		
-
-	context = {'form':form}
-	return render(request, 'accounts/register.html', context)
 
 # loginPage
 @unauthenticated_user
@@ -157,8 +175,4 @@ def logoutUser(request):
 	logout(request)
 	return redirect('login')
 
-# userProfile
-def userProfile(request):
-	context ={}
-	return render(request,'accounts/user.html',context)
 
