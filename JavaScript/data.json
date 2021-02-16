@@ -1,0 +1,25 @@
+ {
+     "person":[
+         {
+             "name":"Titas",
+             "age":23,
+             "uv":"DIU",
+             "married":false,
+             "a":[1,2,3,4,5]
+         },
+         {
+            "name":"Titas",
+            "age":23,
+            "uv":"DIU",
+            "a":[1,2,3,4,5],
+            "married":false
+        },
+        {
+            "name":"Titas",
+            "age":23,
+            "uv":"DIU",
+            "a":[1,2,3,4,5],
+            "married":false
+        }
+     ]
+}
