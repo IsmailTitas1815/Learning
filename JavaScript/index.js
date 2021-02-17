@@ -24,27 +24,25 @@
 // console.log(fi);
 
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function(){
-    if (this.readyState == 4 && this.status == 200){
-        // console.log(this.responseText);
-        var data = this.responseText;
-        jsonData(data);
-    }
-};
+document.getElementById("get_data").addEventListener('click',loadData);
 
-xmlhttp.open('GET',"data.json",true);
-xmlhttp.send();
+function loadData(){
 
-function jsonData(data){
-    // console.log(data);
-    var js_obj = JSON.parse(data);
-    // console.log(js_obj);
-    for (i in js_obj.person){
-        var person = js_obj.person;
-        for (j in person[i])
-        {
-            console.log(person[i][j]);
+    let xhr = new XMLHttpRequest();
+
+
+    xhr.open('GET','data.json',true);
+
+
+    xhr.onload = function (){
+        if(this.status === 200){
+            console.log(this.responseText);
+            document.getElementById("element").innerHTML=`<h4>${this.responseText}</h4>`
         }
     }
-};
+
+    xhr.send();
+    console.log(xhr);
+
+
+}
