@@ -6,7 +6,8 @@ import MenuItem from './MenuItem'
 class Menu extends Component {
     state = {
         dishes: DISHES,
-        selectedDish: null
+        selectedDish: null,
+        toogle: true
     }
 
     onDishSelect = (dish) => {
@@ -17,24 +18,37 @@ class Menu extends Component {
         )
     }
 
+    toogleDish = () => {
+        this.setState(
+            {
+                toogle: !this.state.toogle
+            }
+        )
+    }
+
     render() {
-        const menu = this.state.dishes.map((item) => {
-            return (
-                <MenuItem dish={item}
-                    key={item.id}
-                    DishSelect={
-                        () => this.onDishSelect(item)}
-                />
-            )
-        })
+
+        let menu = null
+        if (this.state.toogle) {
+            menu = this.state.dishes.map((item) => {
+                return (
+                    <MenuItem dish={item}
+                        key={item.id}
+                        DishSelect={
+                            () => this.onDishSelect(item)}
+                    />
+                )
+            })
+
+        }
 
         let dishDetail = null;
-        if(this.state.selectedDish!=null)
-        {
-                dishDetail = <DishDetail dish={this.state.selectedDish}/>
+        if (this.state.selectedDish != null) {
+            dishDetail = <DishDetail dish={this.state.selectedDish} />
         }
         return (
             <div className="container">
+                <button style={{ textAlign: 'center', margin: '10px' }} onClick={this.toogleDish} >Toogle Button</button>
                 <div className="row">
                     <div className="col-6">
                         {menu}

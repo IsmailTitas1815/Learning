@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import bookList from '../assets/books';
 import BookList from './lists/BookList';
+import NewBook from './represtational/NewBook';
+import { Route } from 'react-router-dom';
 
 class MainComponent extends Component {
-    state = {
-        books: bookList,
-        showBooks: true
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: bookList
+        }
+    }
+
 
     changeWithInputState = (event, index) => {
         const books = [...this.state.books];
@@ -28,32 +33,26 @@ class MainComponent extends Component {
         })
     };
 
-    toggleBooks = () => {
-        this.setState({ showBooks: !this.state.showBooks })
-    }
 
     render() {
 
-        const style = {
-            border: "1px solid red",
-            borderRadius: "5px",
-            backgroundColor: "black",
-            color: "white",
-        }
+        const books = <BookList
+            books={this.state.books}
+            deleteBookState={this.deleteBookState} changeWithInputState={this.changeWithInputState} />
 
-        let books = null;
-        if (this.state.showBooks) {
-            books = <BookList 
-            books={this.state.books} 
-            deleteBookState={this.deleteBookState} changeWithInputState={this.changeWithInputState}  />
-
-        }
 
         return (
             <div className="App">
-                <h1 style={style}>Book List</h1>
-                <button onClick={this.toggleBooks}>Toogle Books</button>
-                { books}
+                <div className="nav-bar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/new-book">New Book</a></li>
+                    </ul>
+                </div>
+                <Route path="/" exact render={() => <h1>Home</h1>} />
+                <Route path="/new-book" exact render={() => <NewBook />} />
+                {/* { books}
+                <NewBook /> */}
             </div>
         );
     }

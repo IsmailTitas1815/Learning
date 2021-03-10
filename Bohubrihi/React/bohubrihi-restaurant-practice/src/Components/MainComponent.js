@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from './header/Header'
-// import Footer from './footer/Footer'
 import Body from './body/Body'
+import Header from './header/Header';
 
 const MainComponent = () => {
     return (
@@ -11,6 +10,5 @@ const MainComponent = () => {
         </div>
     )
 }
-
 
 export default MainComponent;

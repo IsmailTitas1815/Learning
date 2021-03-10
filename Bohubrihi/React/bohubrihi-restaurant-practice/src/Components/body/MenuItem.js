@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardBody, CardTitle } from 'reactstrap';
-
+import { Card, CardBody, CardTitle, CardImg, CardImgOverlay } from 'reactstrap';
 
 const MenuItem = props => {
     return (
@@ -11,9 +10,7 @@ const MenuItem = props => {
                         alt={props.dish.name}
                         style={{ opacity: "0.5" }} />
                     <CardImgOverlay>
-                        <CardTitle
-                            onClick={props.DishSelect}
-                            style={{ cursor: "pointer" }}>
+                        <CardTitle onClick={props.selectedDish} style={{cursor:'pointer'}}>
                             {props.dish.name}
                         </CardTitle>
                     </CardImgOverlay>
