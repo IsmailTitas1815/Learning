@@ -1,21 +1,44 @@
 import React, { Component } from 'react';
-import DISHES from '../../data/dishes';
 import DishDetail from './DishDetails';
-import MenuItem from './MenuItem'
+import MenuItem from './MenuItem';
+import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import { addComment } from '../../redux/actionCreators';
+
+const mapStateToProps = (state) => {
+    return {
+        dishes: state.dishes,
+        comments: state.comments
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addComment: (dishId, rating, author, comment) => dispatch(
+            addComment(dishId, rating, author, comment))
+    }
+}
 
 class Menu extends Component {
     state = {
-        dishes: DISHES,
         selectedDish: null,
-        toogle: true
+        toogle: true,
+        modalOpen: false
     }
 
     onDishSelect = (dish) => {
         this.setState(
             {
-                selectedDish: dish
+                selectedDish: dish,
+                modalOpen: !this.state.modalOpen
             }
         )
+    }
+
+    toogleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        })
     }
 
     toogleDish = () => {
@@ -26,11 +49,13 @@ class Menu extends Component {
         )
     }
 
-    render() {
 
+
+    render() {
+        document.title = "Menu";
         let menu = null
         if (this.state.toogle) {
-            menu = this.state.dishes.map((item) => {
+            menu = this.props.dishes.map((item) => {
                 return (
                     <MenuItem dish={item}
                         key={item.id}
@@ -39,23 +64,34 @@ class Menu extends Component {
                     />
                 )
             })
-
         }
 
         let dishDetail = null;
         if (this.state.selectedDish != null) {
-            dishDetail = <DishDetail dish={this.state.selectedDish} />
+            const comments = this.props.comments.filter(comment => {
+                return comment.dishId === this.state.selectedDish.id;
+            });
+            dishDetail = <DishDetail
+                dish={this.state.selectedDish}
+                comments={comments}
+                addComment={this.props.addComment} />
         }
         return (
             <div className="container">
-                <button style={{ textAlign: 'center', margin: '10px' }} onClick={this.toogleDish} >Toogle Button</button>
+                <button style={{ textAlign: 'center', margin: '10px' }}
+                    onClick={this.toogleDish} >Toogle Dish</button>
                 <div className="row">
-                    <div className="col-6">
-                        {menu}
-                    </div>
-                    <div className="col-6">
-                        {dishDetail}
-                    </div>
+                    <CardColumns>{menu}</CardColumns>
+                    <Modal isOpen={this.state.modalOpen}>
+                        <ModalBody>
+                            {dishDetail}
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="secondary" onClick={this.toogleModal}>
+                                Close
+                        </Button>
+                        </ModalFooter>
+                    </Modal>
                 </div>
             </div>
         )
@@ -63,4 +99,4 @@ class Menu extends Component {
 }
 
 
-export default Menu;
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -13,6 +13,9 @@ const LoadComments = (props) => {
                         {comment.comment}
                     </p>
                     <p>
+                        Rating: {comment.rating}
+                    </p>
+                    <p>
                         {dateFormat(comment.date, "dddd, mmmm dS, yyyy, h:MM TT")}
 
                     </p>
