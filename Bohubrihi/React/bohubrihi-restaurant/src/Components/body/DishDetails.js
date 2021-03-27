@@ -2,12 +2,13 @@ import React from 'react';
 import { Card, CardText, CardImg, CardBody, CardTitle } from 'reactstrap';
 import LoadComments from './LoadComments';
 import CommmentForm from './CommentForm';
+import { baseUrl } from '../../redux/baseUrl';
 
 const DishDetail = (props) => {
     return (
         <div>
             <Card style={{ marginTop: '10px' }}>
-                <CardImg src={props.dish.image} alt={props.dish.name} />
+                <CardImg src={baseUrl + props.dish.image} alt={props.dish.name} />
                 <CardBody style={{ textAlign: 'left' }}>
                     <CardTitle>{props.dish.name}</CardTitle>
                     <CardText>
