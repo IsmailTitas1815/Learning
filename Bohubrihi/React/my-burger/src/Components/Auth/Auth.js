@@ -1,0 +1,91 @@
+import React, { Component } from 'react';
+import { Formik } from 'formik';
+
+class Auth extends Component {
+    render() {
+        return (
+            <div>
+                <Formik
+                    initialValues={
+                        {
+                            email: "",
+                            password: "",
+                            passwordConfirm: ""
+                        }
+                    }
+                    onSubmit={
+                        (values) => {
+                            console.log(values)
+                        }
+                    }
+
+                    validate={(values) => {
+                        const errors = {};
+
+                        if (!values.email) {
+                            errors.email = "Requierd"
+                        }
+                        else if (!/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i.test(values.email)) {
+                            errors.email = "Invalid Email Address"
+                        }
+
+                        if (!values.password) {
+                            errors.password = "Requierd"
+                        }
+                        else if (values.password.length < 4) {
+                            errors.password = "Must be atleast 4 characters";
+                        }
+
+                        if (!values.passwordConfirm) {
+                            errors.passwordConfirm = "Requierd"
+                        }
+                        else if (values.password !== values.passwordConfirm) {
+                            errors.passwordConfirm = "Password feild doesn't match";
+                        }
+                        return errors;
+                    }}
+                >
+                    {({ values, handleChange, handleSubmit, errors }) => (
+                        <div style={{
+                            border: "1px grey solid",
+                            padding: "15px",
+                            borderRadius: "7px"
+                        }}>
+                            <form onSubmit={handleSubmit}>
+                                <input name="email"
+                                    placeholder="Enter Your Email"
+                                    className="form-control"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                />
+                                <span style={{ color: "red" }}>{errors.email}</span>
+                                <br />
+                                <input name="password"
+                                    placeholder="Password"
+                                    className="form-control"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                />
+                                <span style={{ color: "red" }}>{errors.password}</span>
+
+                                <br />
+                                <input name="passwordConfirm"
+                                    placeholder="Confirm Password"
+                                    className="form-control"
+                                    value={values.passwordConfirm}
+                                    onChange={handleChange}
+                                />
+                                <span style={{ color: "red" }}>{errors.passwordConfirm}</span>
+
+                                <br />
+                                <button type="submit" className="btn btn-success">Sign Up</button>
+                            </form>
+                        </div>)}
+
+                </Formik>
+            </div>
+        )
+    }
+}
+
+export default Auth;
