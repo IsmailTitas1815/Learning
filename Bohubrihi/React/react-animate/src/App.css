@@ -1,0 +1,14 @@
+.myClass-enter {
+  opacity: 0;
+}
+.myClass-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+.myClass-exit {
+  opacity: 1;
+}
+.myClass-exit-active {
+  opacity: 1;
+  transition: opacity 2000ms;
+}
