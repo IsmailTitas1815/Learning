@@ -6,11 +6,9 @@ class Home extends Component {
     render() {
         document.title = "Bohubrihi Restaurant";
         return (
-
             <div>
                 <Loadng />
             </div>
-
         )
     }
 }

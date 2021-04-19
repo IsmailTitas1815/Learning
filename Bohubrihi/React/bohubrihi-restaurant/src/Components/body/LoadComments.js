@@ -6,7 +6,7 @@ const LoadComments = (props) => {
     if (props.commentIsLoading) {
         return <Loadng />
     }
-    else {
+    else { 
         return (
             props.comments.map(comment => {
                 return (

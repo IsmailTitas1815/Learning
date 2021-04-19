@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Loadng from './Loading';
 
-const Home = () => {
-    return (
-        <div>
-            Home
-        </div>
-    )
+class Home extends Component {
+
+    render() {
+        document.title = "Photo Gallery";
+        return (
+            <div>
+                <Loadng />
+            </div>
+        )
+    }
 }
 
 export default Home;

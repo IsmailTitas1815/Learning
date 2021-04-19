@@ -10,8 +10,11 @@ import {
 } from 'reactstrap';
 
 class Navi extends Component {
-    state = {
-        isNavOpen: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            isNavOpen: false
+        }
     }
 
     navToogle = () => {
