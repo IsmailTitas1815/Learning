@@ -29,7 +29,7 @@ class Navi extends Component {
                 <Navbar dark color="dark" expand="sm">
                     <div className="container">
                         <NavbarToggler onClick={this.navToogle} />
-                        <NavbarBrand href="/">Bohubrihi Restaurant</NavbarBrand>
+                        <NavbarBrand href="/">Photo Gallery</NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav className="mr-auto" navbar>
                                 <NavItem>

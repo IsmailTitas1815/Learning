@@ -6,6 +6,8 @@ import axios from 'axios';
 import { baseUrl } from '../../redux/baseUrl';
 import { Alert } from 'reactstrap';
 
+const { Component } = require("react")
+
 const mapDispatchToProps = dispatch => {
     return {
         resetFeedbackForm: () => {
@@ -229,3 +231,4 @@ class Contact extends Component {
 }
 
 export default connect(null, mapDispatchToProps)(Contact);
+

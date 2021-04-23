@@ -1,11 +1,23 @@
-import IMAGEDETAILS from '../components/data/ImagesDetails';
 import COMMENTS from '../components/data/Comments';
-import * as actionTypes from './actionTypes';
 import { combineReducers } from 'redux';
+import * as actionTypes from './actionTypes';
+import { InitialContactForm } from './forms';
+import { createForms } from 'react-redux-form';
 
-
-const photoReducer = (photoState = IMAGEDETAILS, action) => {
+const photoReducer = (photoState = { isLoading: false, photos: [] }, action) => {
     switch (action.type) {
+        case actionTypes.PHOTO_LOADING:
+            return {
+                ...photoState,
+                isLoading: true,
+                photos: []
+            }
+        case actionTypes.LOAD_PHOTO:
+            return {
+                ...photoState,
+                isLoading: false,
+                photos: action.payload
+            }
         default:
             return photoState;
     }
@@ -25,5 +37,8 @@ const commentReducer = (commentState = COMMENTS, action) => {
 
 export const Reducer = combineReducers({
     imageDetails: photoReducer,
-    comments: commentReducer
+    comments: commentReducer,
+    ...createForms({
+        feedback: InitialContactForm
+    })
 })
