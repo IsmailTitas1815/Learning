@@ -6,8 +6,6 @@ import axios from 'axios';
 import { baseUrl } from '../../redux/baseUrl';
 import { Alert } from 'reactstrap';
 
-const { Component } = require("react")
-
 const mapDispatchToProps = dispatch => {
     return {
         resetFeedbackForm: () => {

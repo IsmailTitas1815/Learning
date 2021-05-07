@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-const Test = props => {
-    const [myName, setMyName] = useState("");
-    const [myInfo, setMyInfo] = useState({
-        a: "hello",
-        b: "world"
-    });
-    const changeState = () => {
-        setMyName("Ismail Hasan");
-        setMyInfo({
-            ...myInfo,
-            b: "New World"
-        });
 
+const Test = props => {
+    const [count, setState] = useState(0);
+    const [myInfo, infoChange] = useState({
+        name: "titas",
+        age: 22,
+        address: "dhaka"
+    });
+
+    const changeState = () => {
+        setState(count + 1)
     }
+
+    const changeInfo = () => {
+        infoChange({
+            ...myInfo,
+            number: Math.random()
+        })
+    }
+
     useEffect(() => {
         console.log(myInfo);
     }, [])
 
+
     return (
         <div>
-            <button onClick={changeState}>Change</button>
-
+            <h3>{count}</h3>
+            <button onClick={changeState}>Increase</button>
+            <h4>{myInfo.name}</h4>
+            <h4>{myInfo.age}</h4>
+            <h4>{myInfo.number}</h4>
+            <h4>{myInfo.address}</h4>
+            <button onClick={changeInfo}>Click Click</button>
         </div>
     )
 }
