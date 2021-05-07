@@ -3,7 +3,7 @@ import React from 'react'
 function useLS() {
     return (
         <div>
-            <p>Hello sir</p>
+            <p>Here is a master and newBranch</p>
         </div>
     )
 }
