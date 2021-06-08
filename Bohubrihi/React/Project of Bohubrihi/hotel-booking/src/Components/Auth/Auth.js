@@ -120,7 +120,6 @@ class Auth extends Component {
                                 <span style={{ color: "red" }}>{errors.passwordConfirm}</span>
                                 <br />
                             </div> : null}
-
                             <button type="submit" className="btn btn-success">{this.state.mode === "Sign Up" ? "Sign Up" : "Login"}</button>
                         </form>
                     </div>

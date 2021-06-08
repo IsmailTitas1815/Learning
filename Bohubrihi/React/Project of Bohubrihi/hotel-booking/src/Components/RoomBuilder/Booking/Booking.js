@@ -111,7 +111,7 @@ class Booking extends Component {
                     </select>
                     <br />
                     <Button disabled={!this.props.purchasable} className="mr-auto" style={{ backgroundColor: "#D70F64" }} onClick={this.submitHandler} >Booking</Button>
-                    <Button className="ml-1" style={{ backgroundColor: "secondary" }} onClick={this.goBack} >Cancel</Button>
+                    <Button className="ml-2" style={{ backgroundColor: "secondary" }} onClick={this.goBack} >Cancel</Button>
                 </form>
             </div>
         )

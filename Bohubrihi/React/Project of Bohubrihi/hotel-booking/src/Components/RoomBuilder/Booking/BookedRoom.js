@@ -11,7 +11,8 @@ const BookedRoom = props => {
                     padding: "5px",
                     marginRight: "10px"
                 }}
-                key={service.type}>{service.amount} X <span style={{ textTransform: "capitalize" }}>
+                key={service.type}>
+                {service.amount} X <span style={{ textTransform: "capitalize" }}>
                     {service.type}</span> </span>
         )
     })
