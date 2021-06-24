@@ -1,34 +1,36 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include<stdio.h>
+int x1,x2,y1,y2,dy,dx,p,i=0;
 void display(void)
 {
-/* clear all pixels */
 glClear(GL_COLOR_BUFFER_BIT);
-/* draw white polygon (rectangle) with corners at
-* (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
-*/
-glBegin(GL_QUADS);
-glColor3ub(0,0,255);
-glVertex3i(5,5,0);
-glVertex3i(40,5,0);
-glVertex3i(35,35,0);
-glVertex3i(10,35,0);
+
+glColor3ub(255,255,255);
+glBegin(GL_POINTS);
+
+while(i<=dx)
+{
+    if(p<0)
+    {
+        x1 = x1+1;
+        p = p+(2*dy);
+        glVertex3i(x1,y1,0);
+//        printf("%d %d",x1,y1);
+    }
+    else
+    {
+        x1 = x1+1;
+        y1 = y1+1;
+        p = p+(2*dy)-(2*dx);
+        glVertex3i(x1,y1,0);
+//        printf("%d %d",x1,y1);
+    }
+    i++;
+
+}
 glEnd();
 
-glBegin(GL_QUADS);
-glColor3ub(0,0,255);
-glVertex3i(45,5,0);
-glVertex3i(45,35,0);
-glVertex3i(80,35,0);
-glVertex3i(80,5,0);
-glEnd();
-
-glBegin(GL_TRIANGLES);
-glColor3ub(0,255,0);
-glVertex3i(45,35,0);
-glVertex3i(80,35,0);
-glVertex3i(62.5,55,0);
-glEnd();
 
 glFlush ();
 }
@@ -50,11 +52,26 @@ glOrtho(0, 100, 0, 100, -10.0, 10.0);
 */
 int main(int argc, char** argv)
 {
+    printf("Enter the Value of x1: ");
+    scanf("%d", &x1);
+    printf("Enter the Value of y1: ");
+    scanf("%d", &y1);
+    printf("Enter the Value of x2: ");
+    scanf("%d", &x2);
+    printf("Enter the Value of y2: ");
+    scanf("%d", &y2);
+
+    dy=y2-y1;
+    dx=x2-x1;
+    p=(2*dy)-dx;
+
+
+
 glutInit(&argc, argv);
 glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
 glutInitWindowSize (600, 600);
 glutInitWindowPosition (100, 100);
-glutCreateWindow ("hello");
+glutCreateWindow ("Ismail 181-15-1815");
 init ();
 glutDisplayFunc(display);
 glutMainLoop();

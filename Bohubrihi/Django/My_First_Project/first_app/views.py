@@ -1,16 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import View, TemplateView, ListView, DetailView,CreateView,UpdateView,DeleteView
+from first_app import models
+from django.urls import reverse_lazy
 
+class IndexView(ListView):
+    context_object_name = 'musician_list'
+    model = models.Musician
+    template_name = 'first_app/index.html'
 
-# Create your views here.
+class MusicianDetails(DetailView):
+    model = models.Musician
+    context_object_name = 'musician'
+    template_name = 'first_app/musician_details.html'
 
-def index(request):
-    dict  = {"name":"Ismail"}
-    return render(request,'first_app/index.html',context = dict)
+class AddMusician(CreateView):
+    model = models.Musician
+    fields = "__all__"
+    template_name = 'first_app/musician_form.html'
 
-def contact(request):
+class UpdateMusician(UpdateView):
+    fields = ('first_name','instrument')
+    model = models.Musician
+    template_name = 'first_app/musician_form.html'
 
-    return HttpResponse("<h1>Hello, this is contact page</h1>  <a href='/'>home</a>  <a href='/about/'>about</a>")
-
-def about(request):
-    return HttpResponse("<h1>Hello, this is about page</h1>  <a href='/contact/'>contact</a>  <a href='/'>/home</a>")
+class DeleteMusician(DeleteView):
+    context_object_name = 'musician'
+    model = models.Musician
+    success_url = reverse_lazy('first_app:index')
+    template_name = 'first_app/delete_musician.html' 

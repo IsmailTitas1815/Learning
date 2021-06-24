@@ -1,0 +1,122 @@
+#include <GL/gl.h>
+#include <GL/glut.h>
+#include<stdio.h>
+double x1,x2,y1,y2;
+double m;
+double dy,dx;
+int temp1,temp2;
+
+void display(void)
+{
+    /* clear all pixels */
+    glClear(GL_COLOR_BUFFER_BIT);
+    /* draw white polygon (rectangle) with corners at
+    * (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
+    */
+    glEnd();
+    glColor3ub(255,0,0);
+    glBegin(GL_POINTS);
+
+
+
+    if (m>0 && m<=1)
+    {
+        while(x1<=x2 && y1<=y2)
+        {
+            x1=x1+1;
+            y1=y1+m;
+            temp1 = (int)x1;
+            temp2 = (int)y1;
+            glVertex3i(temp1,temp2,0);
+            printf("vertex: %d \t %d",temp1,temp2);
+        }
+    }
+
+    else if (m>=-1 && m<=0)
+    {
+        while(x1<=x2 && y1<=y2)
+        {
+            x1=x1-1;
+            y1=y1-m;
+            temp1 = (int)x1;
+            temp2 = (int)y1;
+            glVertex3i(temp1,temp2,0);
+            printf("vertex: %d \t %d",temp1,temp2);
+        }
+    }
+
+    else if (m>1)
+    {
+        while(x1<=x2 && y1<=y2)
+        {
+            x1=x1+(1/m);
+            y1=y1+1;
+            temp1 = (int)x1;
+            temp2 = (int)y1;
+            glVertex3i(temp1,temp2,0);
+            printf("vertex: %d \t %d\n",temp1,temp2);
+        }
+    }
+
+    else if (m<-1)
+    {
+
+        while(x1<=x2 && y1<=y2)
+        {
+            x1=x1-(1/m);
+            y1=y1-1;
+            temp1 = (int)x1;
+            temp2 = (int)y1;
+            glVertex3i(temp1,temp2,0);
+            printf("vertex: %d \t %d",temp1,temp2);
+        }
+    }
+
+    glEnd();
+
+
+    glFlush ();
+}
+void init (void)
+{
+    /* select clearing (background) color */
+    glClearColor (0.0, 0.0, 0.0, 0.0);
+    /* initialize viewing values */
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, 100, 0, 100, -10.0, 10.0);
+}
+/*
+* Declare initial window size, position, and display mode
+* (single buffer and RGBA). Open window with "hello"
+* in its title bar. Call initialization routines.
+* Register callback function to display graphics.
+* Enter main loop and process events.
+*/
+int main(int argc, char** argv)
+{
+    printf("Enter the value of x1: ");
+    scanf("%lf",&x1);
+    printf("Enter the value of y1: ");
+    scanf("%lf",&y1);
+    printf("Enter the value of x2: ");
+    scanf("%lf",&x2);
+    printf("Enter the value of y2: ");
+    scanf("%lf",&y2);
+
+    dy=y2-y1;
+    dx=x2-x1;
+    m=dy/dx; //Calculating Slope
+    printf("%lf",m);
+
+    glutInit(&argc, argv);
+    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize (600, 600);
+    glutInitWindowPosition (100, 100);
+    glutCreateWindow ("hello");
+    init ();
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0; /* ISO C requires main to return int. */
+}
+
