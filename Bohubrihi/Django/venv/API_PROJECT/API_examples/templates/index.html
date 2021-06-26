@@ -15,7 +15,9 @@
     </form>
 
     {% if user %}
-    {{user}}
+    <p>Username: {{user.login}}</p>
+    <p>URL: {{user.html_url}}</p>
+    <p>Username: {{user.public_repos}}</p>
     {% endif %}
   </body>
 </html>
