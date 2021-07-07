@@ -77,7 +77,6 @@ def add_pro_pic(request):
     if request.method == "POST":
         form = ProfilePic(request.POST, request.FILES)
         if form.is_valid():
-            print("valid")
             user_obj = form.save(commit=False)
             user_obj.user = request.user
             user_obj.save()
@@ -87,7 +86,6 @@ def add_pro_pic(request):
 @login_required
 def change_pro_pic(request):
     form = ProfilePic(instance= request.user.user_profile)
-
     if request.method =="POST":
         form = ProfilePic(request.POST, request.FILES, instance = request.user.user_profile)
         if form.is_valid():
