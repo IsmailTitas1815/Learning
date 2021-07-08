@@ -3,15 +3,18 @@
 
 {% block title_block%}{{title}}{% endblock title_block %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-      </ul>
-</nav>
+{% block css_block %}
 
-{% block body_block %}{% endblock body_block %}
+{% endblock css_block %}
+
+{% block body_block %}
+
+<form method="POST" enctype="multipart/form-data">
+
+{{form|crispy}}
+{% csrf_token %}
+<button type="submit" class="btn btn-primary" name="button">Submit</button>
+
+</form>
+
+{% endblock body_block %}
