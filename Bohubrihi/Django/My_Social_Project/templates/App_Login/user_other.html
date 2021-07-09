@@ -24,9 +24,9 @@
 
 <div class="row">
   <div class="col-sm-4">
-    {% if user.user_profile.profile_pic %}
+    {% if user_other.user_profile.profile_pic %}
     <img
-      src="/media/{{user.user_profile.profile_pic}}"
+      src="/media/{{user_other.user_profile.profile_pic}}"
       width="250px"
       alt="image"
       class="rounded-circle"
@@ -44,12 +44,12 @@
   </div>
 
   <div class="col-sm-8">
-  <h3> {{user.username}} &nbsp;</h3>
+  <h3> {{user_other.username}} &nbsp;</h3>
   <br>
-  <h4>{{user.post.count}} Posts &nbsp; &nbsp; {{user.following.count}} followers &nbsp; &nbsp; {{user.follower.count}} following </h4>
+  <h4>{{user_other.post.count}} Posts &nbsp; &nbsp; {{user_other.following.count}} followers &nbsp; &nbsp; {{user_other.follower.count}} following </h4>
   <br>
-  <h4>{{user.user_profile.full_name}}</h4>
-  <h6>{{user.user_profile.description|linebreaks}}</h6>
+  <h4>{{user_other.user_profile.full_name}}</h4>
+  <h6>{{user_other.user_profile.description|linebreaks}}</h6>
   </div>
 </div>
 
@@ -60,7 +60,7 @@
 
 <div class="row">
 
-{% for post in user.post.all %}
+{% for post in user_other.post.all %}
 <div class="crop">
 <img src="/media/{{post.image}}" title="{{post.caption}}">
 
