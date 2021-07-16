@@ -12,7 +12,7 @@ const Product = ({ product }) => {
                     </Link>
                 </div>
                 <div className="product__name">
-                    {product.name}
+                    {product.name} 
                 </div>
                 <div className="row">
                     <div className="col-6">
