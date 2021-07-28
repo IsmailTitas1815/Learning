@@ -11,11 +11,11 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 
 
-def save_pdf(context_dict={}):
-    template = get_template('documents.html')
+def save_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
     html = template.render(context_dict)
     result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode('UTF-8')), result)
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
@@ -24,12 +24,20 @@ def save_pdf(context_dict={}):
 class DownloadPDF(View):
     def get(self, request, pk):
         data = InvoiceModel.objects.filter(pk=pk).values()[0]
-        pdf = save_pdf(data)
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Invoice_%s.pdf" % ("12341231")
-        content = "attachment; filename='%s'" % (filename)
-        response['Content-Disposition'] = content
-        return response
+        template = get_template('documents.html')
+        html = template.render(data)
+        pdf = save_pdf('documents.html', data)
+        if pdf:
+            response = HttpResponse(pdf, content_type="Application/pdf")
+            filename = 'Invoice_%s.pdf' % (str(pk))
+            content = "inline; filename='%s'" %(filename)
+            response['Content-Disposition'] = content
+            download = request.GET.get("Download")
+            if download:
+                content = "attachment; filename='%s'" % (filename)
+                response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not Found")
 
 
 def order(request):
@@ -44,4 +52,3 @@ def order(request):
             order_saved = True
             return HttpResponseRedirect(reverse('App_Order:documents', kwargs={"pk": pk}))
     return render(request, 'order.html', context={"form": form, "order_saved": order_saved})
-
