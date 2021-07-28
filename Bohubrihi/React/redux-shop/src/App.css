@@ -41,12 +41,18 @@ body {
 .nav__left img {
   width: 100px;
 }
-/* .nav__right {
-  margin-left: 1000px;
+
+.nav__right{
+  flex: 1;
+  text-align: right;
 }
-.nav__auth {
-  width: 20px;
-} */
+.nav__auth{
+  display: inline-block;
+  position: relative;
+  padding: 8px 12px;
+  margin-left: 50px;
+}
+
 
 .cart-icon {
   color: var(--main);

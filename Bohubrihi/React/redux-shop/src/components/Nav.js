@@ -32,20 +32,22 @@ const Nav = () => {
                     </Link>
                 </div>
                 <div className="nav__right">
-                    <Link to="/cart">
-                        <div className="basket">
-                            <BsFillBagFill className="cart-icon" />
-                            <span>{products.length}</span>
-                        </div> </Link>
+                    <div className="nav__auth">
+                        <Link to="/cart">
+                            <div className="basket">
+                                <BsFillBagFill className="cart-icon" />
+                                <span>{products.length}</span>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="nav__auth">
+                        <Link to='/orders' className="navlink" > Orders </Link>
+                    </div>
+                    <div className="nav__auth">
+                        <Link to='/logout' className="navlink" > Logout </Link>
+                    </div>
                 </div>
 
-                <div className="nav__auth">
-                    <Link to='/orders' className="navlink" > Orders </Link>
-                </div>
-                
-                <div className="nav__auth">
-                    <Link to='/logout' className="navlink" > Logout </Link>
-                </div>
             </div>
         )
     }
