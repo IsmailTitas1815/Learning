@@ -1,8 +1,17 @@
-{% extends 'base.html' %} {% load static %}
- {% block title_block %}Home{% endblock title_block %} {% block body_block %}
+{% extends 'base.html' %} {% load static %} {% block title_block %}Home
+{% endblock title_block %} 
 
+{% block body_block %} 
+
+{% if sent %}
+<center>
+  <h2>Thank Brother! You have done it!</h2>
+</center>
+{% else %}
 <div>
   <h1>INVOICE MAKING</h1>
 </div>
 
-{% endblock body_block %}
+{% endif %}
+
+ {% endblock body_block %}

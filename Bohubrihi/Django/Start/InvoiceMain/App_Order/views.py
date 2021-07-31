@@ -1,17 +1,52 @@
-from django.shortcuts import render, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse,redirect
 from django.views import View
 from django.urls import reverse
 from App_Order.forms import InvoiceModelForm
 from App_Order.models import InvoiceModel
+from App_Login.models import Profile
 from django.contrib.auth.decorators import login_required
 
-# some libraries
+# some libraries for making html to pdf
 from io import BytesIO
 from django.http import HttpResponse
 from django.template.loader import get_template, render_to_string
 from xhtml2pdf import pisa
 import os
 from django.conf import settings
+
+# some libraries for email
+
+from django.core.mail import EmailMessage
+from django.conf import settings
+
+def email_send(request):
+    email = EmailMessage('Normal Messages', 
+    'It is Me, Titas', settings.EMAIL_HOST_USER,['ismailtitas1815@gmail.com'],)
+    print("Email",email)
+    email.content_subtype = "html"
+    file =open("requirements.txt",'r')
+    email.attach('requirements.txt',file.read(),'text/plain')
+    email.send()
+    return render(request, 'Home.html',context={"sent":"Yes! You have sent an email!!"})
+
+def email_send2(request):
+    pk = InvoiceModel.objects.all().last().pk
+    data = InvoiceModel.objects.filter(pk=pk).values()[0]
+    pdf = save_pdf('documents.html', data)
+    response = HttpResponse(pdf, content_type="application/pdf")
+    filename = 'Invoice_%s.pdf' % (str(pk))
+    content = "inline; filename='%s'" % (filename)
+    response['Content-Disposition'] = content
+
+    email = EmailMessage('Normal Messages', 
+    'It is Me, Titas', settings.EMAIL_HOST_USER,['ismailtitas1815@gmail.com'],)
+    email.content_subtype = "html"
+
+    file = response
+    email.attach(file, file.read(),file.content_type)
+    email.send()
+    return render(request, 'Home.html',context={"sent":"Yes! You have sent an email!!"})
+
 
 def fetch_resources(uri, rel):
     path = os.path.join(settings.MEDIA_ROOT,
@@ -54,12 +89,18 @@ def downloadPDF(request, pk):
 
 @login_required
 def order(request):
+    if not request.user.profile.is_fully_filled():
+        #messege(fill all the box)
+        return redirect("App_Login:profile")
+    invoice_user_profile = Profile.objects.get(user = request.user)
     form = InvoiceModelForm()
     if request.method == 'POST':
         form = InvoiceModelForm(data=request.POST)
         if form.is_valid():
-            form.save()
             select = form.cleaned_data.get('options')
+            invoice = form.save(commit=False)
+            invoice.invoice_user = request.user
+            invoice.save()
             user_order = InvoiceModel.objects.all().last()
             pk = user_order.pk
             if select == "Download":

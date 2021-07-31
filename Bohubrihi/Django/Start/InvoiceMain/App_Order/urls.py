@@ -8,4 +8,6 @@ urlpatterns = [
     path('', views.order, name="order"),
     path('doc/<pk>', views.downloadPDF, name="documents"),
     path('showPdf/<pk>', views.showPdf, name="showPdf"),
+    path('email_send/', views.email_send, name="email_send"),
+    path('email_send2/', views.email_send2, name="email_send2"),
 ]

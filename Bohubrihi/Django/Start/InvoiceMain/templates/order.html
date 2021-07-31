@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block title_block %}Order{% endblock title_block %}
 {% block body_block %}
-
+<div class="container mt-3 mb-3 bg-primary" style="width:100%; height:50px; text-align:center;font-weight:bold; font-size:28px; color:white;">Invoice</div>
 <form method="POST">
 {{form|crispy}}
 {% csrf_token %}
