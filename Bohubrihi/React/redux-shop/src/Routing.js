@@ -58,7 +58,7 @@ class Routing extends Component {
             )
         }
         return (
-            <div>
+            <div className="container">
                 {routes}
             </div>
         )

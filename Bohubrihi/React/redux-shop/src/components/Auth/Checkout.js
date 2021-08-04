@@ -41,34 +41,49 @@ class Checkout extends Component {
 
     submitHandler = () => {
 
+        const products = { ...this.props.products };
         const order = {
-            products: this.props.products,
+            products: products,
             totalPrice: this.props.totalPrice,
             orderDetails: this.state.values,
             orderTime: new Date(),
-            userId: this.props.userId
+            user: this.props.userId
         }
-        axios.post("https://redux-store-97923-default-rtdb.firebaseio.com/order.json?auth=" + this.props.token, order)
+        const header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.props.token}`
+            }
+        }
+        console.log("response")
+        console.log(order)
+        
+        axios.post("http://localhost:8000/api/order/", order, header)
             .then(response => {
-                if (response.status === 200) {
-
-                    this.setState({
-                        isModalOpen: true,
-                        modalMsg: "Order Successfull!",
-                    })
-                }
-                else {
-                    this.setState({
-                        isModalOpen: true,
-                        modalMsg: "Order Failed!"
-                    })
-                }
+                console.log(response)
+                // if (response.status === 201) {
+                //     this.setState({
+                //         isModalOpen: true,
+                //         modalMsg: "Order Successfull!",
+                //     })
+                // }
+                // else {
+                //     this.setState({
+                //         isModalOpen: true,
+                //         modalMsg: "Order Failed!"
+                //     })
+                // }
             })
-            .catch(err => this.setState({
-                isModalOpen: true,
-                modalMsg: "Order Failed in catch!"
-            }))
+            .catch(err => console.log(err)
+                // {
+                // this.setState({
+                //     isModalOpen: true,
+                //     modalMsg: "Order Failed in catch!",
+                // })
+            // }
+            )
     }
+
 
     goBack = () => {
         this.props.history.goBack('/');

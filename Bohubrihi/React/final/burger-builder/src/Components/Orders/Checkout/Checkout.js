@@ -51,16 +51,29 @@ class Checkout extends Component {
         this.setState({
             isLoading: true
         })
-        const order = {
-            ingredients: this.props.ingredients,
-            customer: this.state.values,
-            price: this.props.totalPrice,
-            orderTime: new Date(),
-            userId: this.props.userId
+        const ingredients = [...this.props.ingredients]
+        const ingredientObj = {}
+        for (let i of ingredients){
+            ingredientObj[i.type] = i.amount
         }
-        axios.post("https://burger-builder-146b5-default-rtdb.firebaseio.com/orders.json?auth="+this.props.token, order)
+        const order = {
+                ingredients: ingredientObj,
+                customer: this.state.values,
+                price: this.props.totalPrice,
+                orderTime: new Date(),
+                user: this.props.userId
+            }
+
+        const header = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.props.token}`
+            }
+        }
+
+        axios.post("http://localhost:8000/api/order/", order, header)
             .then(response => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     this.setState({
                         isLoading: false,
                         isModalOpen: true,
@@ -94,7 +107,7 @@ class Checkout extends Component {
                 borderRadius: "5px",
                 padding: "20px"
             }}>Payment: {this.props.totalPrice} BDT
-                </h4>
+            </h4>
             <form style={{
                 border: "1px solid grey",
                 boxShadow: "1px 1px #888888",

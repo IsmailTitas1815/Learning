@@ -75,13 +75,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
                 purchasable: false
             };
         case actionTypes.LOAD_ORDERS:
-            let orders = [];
-            for (let key in action.payload) {
-                orders.push({
-                    ...action.payload[key],
-                    id: key,
-                })
-            }
+            let orders = [...action.payload];
             return {
                 ...state,
                 orders: orders,
