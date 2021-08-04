@@ -41,7 +41,9 @@ class Checkout extends Component {
 
     submitHandler = () => {
 
-        const products = { ...this.props.products };
+        const products = {...this.props.products}
+ 
+
         const order = {
             products: products,
             totalPrice: this.props.totalPrice,

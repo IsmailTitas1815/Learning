@@ -75,7 +75,7 @@ class OrderDetails(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-    products = models.OneToOneField(Product,on_delete=models.CASCADE, null=True)
+    products = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="order")
     orderDetails = models.OneToOneField(OrderDetails,on_delete=models.CASCADE, null=True)
     totalPrice = models.CharField(max_length=20, blank=False)
     orderTime = models.CharField(max_length=200, blank=False)

@@ -53,17 +53,17 @@ class Checkout extends Component {
         })
         const ingredients = [...this.props.ingredients]
         const ingredientObj = {}
-        for (let i of ingredients){
+        for (let i of ingredients) {
             ingredientObj[i.type] = i.amount
         }
         const order = {
-                ingredients: ingredientObj,
-                customer: this.state.values,
-                price: this.props.totalPrice,
-                orderTime: new Date(),
-                user: this.props.userId
-            }
-
+            ingredients: ingredientObj,
+            customer: this.state.values,
+            price: this.props.totalPrice,
+            orderTime: new Date(),
+            user: this.props.userId
+        }
+        console.log(order);
         const header = {
             headers: {
                 "Content-Type": "application/json",
