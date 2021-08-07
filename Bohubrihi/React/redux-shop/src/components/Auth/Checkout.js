@@ -41,11 +41,18 @@ class Checkout extends Component {
 
     submitHandler = () => {
 
-        const products = {...this.props.products}
- 
+        // const products = {...this.props.products}
+        let pro = {
+            name : "something",
+            price : '10',
+            discount: 1,
+            discountPrice: "9",
+            quantity : 1,
+            description : "lorem dsafdslkafj dsaf;dslfk;jsd afjefsd fdslkf"
+        }
 
         const order = {
-            products: products,
+            products: pro,
             totalPrice: this.props.totalPrice,
             orderDetails: this.state.values,
             orderTime: new Date(),
@@ -63,26 +70,26 @@ class Checkout extends Component {
         axios.post("http://localhost:8000/api/order/", order, header)
             .then(response => {
                 console.log(response)
-                // if (response.status === 201) {
-                //     this.setState({
-                //         isModalOpen: true,
-                //         modalMsg: "Order Successfull!",
-                //     })
-                // }
-                // else {
-                //     this.setState({
-                //         isModalOpen: true,
-                //         modalMsg: "Order Failed!"
-                //     })
-                // }
+                if (response.status === 201) {
+                    this.setState({
+                        isModalOpen: true,
+                        modalMsg: "Order Successfull!",
+                    })
+                }
+                else {
+                    this.setState({
+                        isModalOpen: true,
+                        modalMsg: "Order Failed!"
+                    })
+                }
             })
-            .catch(err => console.log(err)
-                // {
-                // this.setState({
-                //     isModalOpen: true,
-                //     modalMsg: "Order Failed in catch!",
-                // })
-            // }
+            .catch(err =>
+                {
+                this.setState({
+                    isModalOpen: true,
+                    modalMsg: "Order Failed in catch!",
+                })
+            }
             )
     }
 

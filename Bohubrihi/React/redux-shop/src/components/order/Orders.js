@@ -1,7 +1,13 @@
 import React from 'react'
 
 const Orders = ({ order }) => {
-    const productSummary = order.products.map(product => {
+    const orders = Object.entries(order.products)
+    let objList = []
+    for(let i in orders){
+        console.log(typeof(i));
+   }
+    console.log(orders);
+    const productSummary = orders.map(product => {
         return (
             <span
                 style={{

@@ -10,8 +10,12 @@ const orderSuccess = (orders) => {
 
 
 export const fetchOrder = (token, userId) => dispatch => {
-    const queryParams = '&orderBy="userId"&equalTo="' + userId + '"';
-    axios.get('https://redux-store-97923-default-rtdb.firebaseio.com/order.json?auth=' + token + queryParams)
+const header ={
+    headers:{
+        "Authorization":`Bearer ${token}`
+    }
+}
+    axios.get(`http://localhost:8000/api/order?id=${userId}`, header)
 
         .then(response => {
             dispatch(orderSuccess(response.data));
